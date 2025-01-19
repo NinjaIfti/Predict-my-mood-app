@@ -37,7 +37,7 @@ class _MyMoodPageState extends State<MyMoodPage> {
   var myCurrentMood = 'angry';
 
   void predictMyMood() {
-    final _random = new Random();
+    final _random = Random();
 
     var element = myMood[_random.nextInt(myMood.length)];
 
@@ -49,28 +49,28 @@ class _MyMoodPageState extends State<MyMoodPage> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Row(children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Image.asset("images/$myCurrentMood.png"),
-            ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Image.asset("images/$myCurrentMood.png"),
           ),
-        ]),
+        ),
+        Text(
+          'Current Mood: $myCurrentMood',
+          style: TextStyle(fontSize: 24, color: Colors.white),
+        ),
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black26,
             ),
             child: Text('Predict My Mood'),
-            onPressed: () {
-              predictMyMood();
-            },
+            onPressed: predictMyMood,
           ),
         ),
       ],
     );
   }
-}
